@@ -1,6 +1,8 @@
 package com.maipu.Xmall.bean;
 
-public class WmsWareInfo {
+import java.io.Serializable;
+
+public class WmsWareInfo  implements Serializable {
     private Long id;
 
     private String name;

@@ -1,8 +1,9 @@
 package com.maipu.Xmall.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class WmsWareOrderTask {
+public class WmsWareOrderTask  implements Serializable {
     private Long id;
 
     private Long orderId;

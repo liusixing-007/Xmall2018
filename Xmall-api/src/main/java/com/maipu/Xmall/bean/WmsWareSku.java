@@ -1,6 +1,8 @@
 package com.maipu.Xmall.bean;
 
-public class WmsWareSku {
+import java.io.Serializable;
+
+public class WmsWareSku  implements Serializable {
     private Long id;
 
     private Long skuId;

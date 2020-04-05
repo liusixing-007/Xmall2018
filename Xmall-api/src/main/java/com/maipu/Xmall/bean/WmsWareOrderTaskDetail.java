@@ -1,6 +1,8 @@
 package com.maipu.Xmall.bean;
 
-public class WmsWareOrderTaskDetail {
+import java.io.Serializable;
+
+public class WmsWareOrderTaskDetail  implements Serializable {
     private Long id;
 
     private Long skuId;
