@@ -15,9 +15,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.spt-oss</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <groupId>com.maipu.Xmall</groupId>
+            <artifactId>Xmall-common-util</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.github.spt-oss</groupId>-->
+            <!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
+        <!--</dependency>-->
     </dependencies>
 
 </project>

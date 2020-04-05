@@ -35,6 +35,11 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>2.2.6.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>2.2.6.RELEASE</version>
             </dependency>
@@ -120,24 +125,6 @@
                 <artifactId>zookeeper</artifactId>
                 <version>${zookeeper.version}</version>
             </dependency>
-
-            <!--&lt;!&ndash;整合dubbo&ndash;&gt;-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.dubbo</groupId>-->
-                <!--<artifactId>dubbo-spring-boot-starter</artifactId>-->
-                <!--<version>2.7.0</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.dubbo</groupId>-->
-                <!--<artifactId>dubbo</artifactId>-->
-                <!--<version>2.7.0</version>-->
-            <!--</dependency>-->
-            <!--&lt;!&ndash; Zookeeper &ndash;&gt;-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.zookeeper</groupId>-->
-                <!--<artifactId>zookeeper</artifactId>-->
-                <!--<version>3.4.9</version>-->
-            <!--</dependency>-->
             <dependency>
                 <groupId>com.github.spt-oss</groupId>
                 <artifactId>spring-boot-starter-thymeleaf</artifactId>
