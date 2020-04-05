@@ -19,6 +19,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <curator-framework.version>4.0.1</curator-framework.version>
+        <zookeeper.version>3.4.13</zookeeper.version>
+        <dubbo.starter.version>0.2.1.RELEASE</dubbo.starter.version>
+        <dubbo.version>2.6.5</dubbo.version>
+
     </properties>
 
     <dependencyManagement>
@@ -58,14 +63,14 @@
                 <version>4.10</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>1.2.51</version>
+                <groupId>ai.ost</groupId>
+                <artifactId>fastjson-protobuf</artifactId>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>3.8.1</version>
+                <version>3.9</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
@@ -82,22 +87,57 @@
                 <artifactId>commons-beanutils</artifactId>
                 <version>1.9.3</version>
             </dependency>
+            <!--dubbo-springboot-->
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.starter.version}</version>
+            </dependency>
 
+            <!--dubbo-->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>dubbo</artifactId>
-                <version>2.8.4</version>
+                <version>${dubbo.version}</version>
             </dependency>
+
+            <!--curator相关，操作zookeeper-->
             <dependency>
-                <groupId>com.101tec</groupId>
-                <artifactId>zkclient</artifactId>
-                <version>0.1.0</version>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${curator-framework.version}</version>
             </dependency>
+
             <dependency>
-                <groupId>io.dubbo.springboot</groupId>
-                <artifactId>spring-boot-starter-dubbo</artifactId>
-                <version>1.0.0</version>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${curator-framework.version}</version>
             </dependency>
+
+            <!--zookeeper-->
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
+            </dependency>
+
+            <!--&lt;!&ndash;整合dubbo&ndash;&gt;-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.dubbo</groupId>-->
+                <!--<artifactId>dubbo-spring-boot-starter</artifactId>-->
+                <!--<version>2.7.0</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.dubbo</groupId>-->
+                <!--<artifactId>dubbo</artifactId>-->
+                <!--<version>2.7.0</version>-->
+            <!--</dependency>-->
+            <!--&lt;!&ndash; Zookeeper &ndash;&gt;-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.zookeeper</groupId>-->
+                <!--<artifactId>zookeeper</artifactId>-->
+                <!--<version>3.4.9</version>-->
+            <!--</dependency>-->
             <dependency>
                 <groupId>com.github.spt-oss</groupId>
                 <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -108,11 +148,7 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>1.3.2</version>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-jdbc</artifactId>
-                <version>2.2.6.RELEASE</version>
-            </dependency>
+
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
