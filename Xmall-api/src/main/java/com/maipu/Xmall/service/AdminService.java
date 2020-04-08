@@ -1,8 +1,6 @@
 package com.maipu.Xmall.service;
 
-import com.maipu.Xmall.bean.PmsBaseCatalog1;
-import com.maipu.Xmall.bean.PmsBaseCatalog2;
-import com.maipu.Xmall.bean.PmsBaseCatalog3;
+import com.maipu.Xmall.bean.*;
 
 import javax.persistence.Id;
 import java.util.List;
@@ -18,5 +16,21 @@ public interface AdminService {
 
     List<PmsBaseCatalog2> getCatalog2(Integer id);
 
-    List<PmsBaseCatalog3> getCatalog3(Integer id);
+    List<PmsBaseCatalog3> getCatalog3(Long id);
+
+    List<PmsProductInfo> getSpuList(Long id);
+
+    List<PmsBaseSaleAttr> getBaseSaleAttrList();
+
+    String savaSpuInfo(PmsProductInfo pmsProductInfo);
+
+    List<PmsBaseAttrInfo> getAttrInfoList(Long catalog3Id);
+
+    List<PmsBaseAttrValue> getAttrValueList(Long attrId);
+
+    List<PmsBaseAttrValue> saveAttrInfo(PmsBaseAttrInfo pmsBaseAttrInfo);
+
+    List<PmsProductSaleAttr> spuSaleAttrList(Long spuId);
+
+    List<PmsProductImage> spuImageList(Long spuId);
 }

@@ -3,6 +3,7 @@ package com.maipu.Xmall.bean;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 public class PmsProductSaleAttrValue  implements Serializable {
@@ -47,4 +48,5 @@ public class PmsProductSaleAttrValue  implements Serializable {
     public void setSaleAttrValueName(String saleAttrValueName) {
         this.saleAttrValueName = saleAttrValueName == null ? null : saleAttrValueName.trim();
     }
+
 }

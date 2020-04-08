@@ -3,7 +3,9 @@ package com.maipu.Xmall.bean;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.Serializable;
+import java.util.List;
 
 public class PmsProductSaleAttr  implements Serializable {
     @Id
@@ -15,6 +17,18 @@ public class PmsProductSaleAttr  implements Serializable {
     private Long saleAttrId;
 
     private String saleAttrName;
+    @Transient
+    private List<PmsProductSaleAttrValue> pmsProductSaleAttrValues;
+
+    public List<PmsProductSaleAttrValue> getPmsProductSaleAttrValues() {
+        return pmsProductSaleAttrValues;
+    }
+
+    public void setPmsProductSaleAttrValues(List<PmsProductSaleAttrValue> pmsProductSaleAttrValues) {
+        this.pmsProductSaleAttrValues = pmsProductSaleAttrValues;
+    }
+
+
 
     public Long getId() {
         return id;

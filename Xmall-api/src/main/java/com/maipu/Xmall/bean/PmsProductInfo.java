@@ -3,7 +3,9 @@ package com.maipu.Xmall.bean;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.Serializable;
+import java.util.List;
 
 public class PmsProductInfo  implements Serializable {
     @Id
@@ -17,6 +19,29 @@ public class PmsProductInfo  implements Serializable {
     private Long catalog3Id;
 
     private Long tmId;
+
+    @Transient
+    private List<PmsBaseSaleAttr> spuSaleAttrList;
+    @Transient
+    private List<PmsProductImage> spuImageList;
+
+    public List<PmsProductImage> getSpuImageList() {
+        return spuImageList;
+    }
+
+    public void setSpuImageList(List<PmsProductImage> spuImageList) {
+        this.spuImageList = spuImageList;
+    }
+
+    public List<PmsBaseSaleAttr> getSpuSaleAttrList() {
+        return spuSaleAttrList;
+    }
+
+    public void setSpuSaleAttrList(List<PmsBaseSaleAttr> spuSaleAttrList) {
+        this.spuSaleAttrList = spuSaleAttrList;
+    }
+
+
 
     public Long getId() {
         return id;
