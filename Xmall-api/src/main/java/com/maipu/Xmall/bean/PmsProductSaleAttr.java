@@ -7,7 +7,7 @@ import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.List;
 
-public class PmsProductSaleAttr  implements Serializable {
+public class PmsProductSaleAttr implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,18 +17,17 @@ public class PmsProductSaleAttr  implements Serializable {
     private Long saleAttrId;
 
     private String saleAttrName;
+
     @Transient
-    private List<PmsProductSaleAttrValue> pmsProductSaleAttrValues;
+    private List<PmsProductSaleAttrValue> spuSaleAttrValueList;
 
-    public List<PmsProductSaleAttrValue> getPmsProductSaleAttrValues() {
-        return pmsProductSaleAttrValues;
+    public List<PmsProductSaleAttrValue> getSpuSaleAttrValueList() {
+        return spuSaleAttrValueList;
     }
 
-    public void setPmsProductSaleAttrValues(List<PmsProductSaleAttrValue> pmsProductSaleAttrValues) {
-        this.pmsProductSaleAttrValues = pmsProductSaleAttrValues;
+    public void setSpuSaleAttrValueList(List<PmsProductSaleAttrValue> spuSaleAttrValueList) {
+        this.spuSaleAttrValueList = spuSaleAttrValueList;
     }
-
-
 
     public Long getId() {
         return id;

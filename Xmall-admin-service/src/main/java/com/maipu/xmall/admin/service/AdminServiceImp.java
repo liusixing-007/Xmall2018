@@ -6,7 +6,6 @@ import com.maipu.Xmall.service.AdminService;
 import com.maipu.xmall.admin.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 /**
@@ -24,7 +23,6 @@ public class AdminServiceImp implements AdminService {
     private BaseCatalog2Mapper baseCatalog2Mapper;
     @Autowired
     private BaseCatalog3Mapper baseCatalog3Mapper;
-
     @Autowired
     private BaseSaleAttrMapper baseSaleAttrMapper;
     @Autowired
@@ -103,6 +101,7 @@ public class AdminServiceImp implements AdminService {
         List<PmsProductImage> spuImageList = pmsProductInfo.getSpuImageList();
         for (PmsProductImage pmsProductImages : spuImageList) {
             pmsProductImages.setProductId(id);
+            pmsProductImages.setImgUrl("http://" + pmsProductImages.getImgUrl());
             int insert1 = spuImageMapper.insert(pmsProductImages);
         }
         System.out.println("已经将此spu的Id值保存到对应的spuImage表");
@@ -189,11 +188,11 @@ public class AdminServiceImp implements AdminService {
             int insert = baseAttrValueMapper.insert(pmsBaseAttrValue1);
 
         }
-
         return null;
     }
 
     @Override
+    @Transactional
     public List<PmsProductSaleAttr> spuSaleAttrList(Long spuId) {
         PmsProductSaleAttr pmsProductSaleAttr = new PmsProductSaleAttr();
         pmsProductSaleAttr.setProductId(spuId);
@@ -206,7 +205,7 @@ public class AdminServiceImp implements AdminService {
             pmsProductSaleAttrValue.setSaleAttrId(id);
             pmsProductSaleAttrValue.setProductId(spuId);
             List<PmsProductSaleAttrValue> select1 = spuSaleAttrValueMapper.select(pmsProductSaleAttrValue);
-            select.get(i).setPmsProductSaleAttrValues(select1);
+            select.get(i).setSpuSaleAttrValueList(select1);
         }
         return select;
     }
@@ -219,5 +218,94 @@ public class AdminServiceImp implements AdminService {
         return select;
     }
 
+    @Override
+    @Transactional
+    public String saveSkuInfo(PmsSkuInfo pmsSkuInfo) {
+
+        pmsSkuInfo.setProductId(pmsSkuInfo.getSpuId());
+
+        skuInfoMapper.insert(pmsSkuInfo);
+
+        List<PmsSkuInfo> select = skuInfoMapper.select(pmsSkuInfo);
+        Long id = select.get(0).getId();
+        List<PmsSkuAttrValue> skuAttrValueList = pmsSkuInfo.getSkuAttrValueList();
+        for (PmsSkuAttrValue pms :
+                skuAttrValueList) {
+            pms.setSkuId(id);
+            skuAttrValueMapper.insert(pms);
+        }
+
+        List<PmsSkuImage> skuImages = pmsSkuInfo.getSkuImageList();
+        for (PmsSkuImage pms :
+                skuImages) {
+            pms.setSkuId(id);
+            pms.setProductImgId(pmsSkuInfo.getSpuId());
+            skuImageMapper.insert(pms);
+        }
+
+        List<PmsSkuSaleAttrValue> skuSaleAttrValueList = pmsSkuInfo.getSkuSaleAttrValueList();
+        for (PmsSkuSaleAttrValue pms :
+                skuSaleAttrValueList) {
+            pms.setSkuId(id);
+            skuSaleAttrValueMapper.insert(pms);
+        }
+        return "success!";
+    }
+
+    @Override
+    public PmsSkuInfo getSkuInfoFromDB(Long id) {
+        PmsSkuInfo pmsSkuInfo1 = new PmsSkuInfo();
+        pmsSkuInfo1.setId(id);
+        PmsSkuInfo pmsSkuInfo = skuInfoMapper.selectOne(pmsSkuInfo1);
+        PmsSkuImage pmsSkuImage = new PmsSkuImage();
+        pmsSkuImage.setSkuId(id);
+        List<PmsSkuImage> select = skuImageMapper.select(pmsSkuImage);
+        pmsSkuInfo.setSkuImageList(select);
+        return pmsSkuInfo;
+    }
+
+    @Transactional
+    @Override
+    public PmsSkuInfo getSkuInfo(Long id) {
+        PmsSkuInfo pmsSkuInfo = new PmsSkuInfo();
+
+        return pmsSkuInfo;
+    }
+
+    @Override
+    @Transactional
+    public List<PmsProductSaleAttr> spuSaleAttrListCheckBySku(Long productId,Long skuId) {
+        PmsProductSaleAttr pmsProductSaleAttr = new PmsProductSaleAttr();
+        pmsProductSaleAttr.setProductId(productId);
+        List<PmsProductSaleAttr> select = spuSaleAttrMapper.select(pmsProductSaleAttr);
+        for (PmsProductSaleAttr pms:select
+             ) {
+            PmsProductSaleAttrValue pmsProductSaleAttrValue = new PmsProductSaleAttrValue();
+            pmsProductSaleAttrValue.setProductId(productId);
+            pmsProductSaleAttrValue.setSaleAttrId(pms.getSaleAttrId());
+            List<PmsProductSaleAttrValue> select1 = spuSaleAttrValueMapper.select(pmsProductSaleAttrValue);
+
+            for(PmsProductSaleAttrValue pms1:select1){
+                PmsSkuSaleAttrValue pmsSkuSaleAttrValue = new PmsSkuSaleAttrValue();
+                pmsSkuSaleAttrValue.setSkuId(skuId);
+                pmsSkuSaleAttrValue.setSaleAttrValueName(pms1.getSaleAttrValueName());
+                int size = skuSaleAttrValueMapper.select(pmsSkuSaleAttrValue).size();
+                if(size==1){
+                    pms1.setIsChecked("1");
+                }else{
+                    pms1.setIsChecked(null);
+                }
+            }
+            pms.setSpuSaleAttrValueList(select1);
+        }
+        return select;
+    }
+
+    @Override
+    public List<PmsSkuInfo> getSkuSaleAttrValueList(Long productId) {
+        List<PmsSkuInfo> pmsSkuInfos = skuInfoMapper.selectSkuSaleAttrValueListBySkuId(productId);
+
+        return pmsSkuInfos;
+    }
 
 }

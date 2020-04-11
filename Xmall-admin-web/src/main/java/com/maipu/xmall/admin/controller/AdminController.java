@@ -138,4 +138,15 @@ public class AdminController {
         return pmsProductImages;
     }
 
+
+    //sku相关
+
+    //保存spu的一个sku信息
+    @PostMapping(value = "/saveSkuInfo")
+    public String saveSkuInfo(@RequestBody PmsSkuInfo pmsSkuInfo) {
+            String s= adminService.saveSkuInfo(pmsSkuInfo);
+ return null;
+    }
+
+
 }

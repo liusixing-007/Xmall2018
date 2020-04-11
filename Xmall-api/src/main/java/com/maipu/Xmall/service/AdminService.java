@@ -33,4 +33,14 @@ public interface AdminService {
     List<PmsProductSaleAttr> spuSaleAttrList(Long spuId);
 
     List<PmsProductImage> spuImageList(Long spuId);
+
+    String saveSkuInfo(PmsSkuInfo pmsSkuInfo);
+
+    PmsSkuInfo getSkuInfoFromDB(Long id);
+
+    PmsSkuInfo getSkuInfo(Long id);
+
+    List<PmsProductSaleAttr> spuSaleAttrListCheckBySku(Long productId,Long skuId);
+
+    List<PmsSkuInfo> getSkuSaleAttrValueList(Long productId);
 }
