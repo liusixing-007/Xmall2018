@@ -22,7 +22,7 @@
         <curator-framework.version>4.0.1</curator-framework.version>
         <zookeeper.version>3.4.13</zookeeper.version>
         <dubbo.starter.version>0.2.1.RELEASE</dubbo.starter.version>
-        <dubbo.version>2.6.5</dubbo.version>
+        <dubbo.version>2.6.9</dubbo.version>
 
     </properties>
 
